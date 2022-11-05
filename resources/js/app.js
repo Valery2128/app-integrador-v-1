@@ -1,13 +1,14 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+import Vue from "vue";
+import Vuetify from "vuetify";
+// import VueRouter from "vue-router";
+import "vuetify/dist/vuetify.min.css";
+import "@mdi/font/css/materialdesignicons.css"; // Ensure you are using css-loader
 
+Vue.use(Vuetify);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -16,17 +17,28 @@ window.Vue = require('vue').default;
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify({
+        iconfont: "mdi",
+        theme: {
+            themes: {
+                light: {
+                    primary: "#EB8635", // naranja
+                    secondary: "#363636",
+                    accent: "#e3ecf5", // tablas
+                    error: "#FF5252",
+                    info: "#1963ad",
+                    success: "#4CAF50",
+                    warning: "#FFC107",
+                },
+            },
+        },
+    }),
+
 });
