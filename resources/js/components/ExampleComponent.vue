@@ -1,98 +1,86 @@
 <template>
-    <v-card
-      class="mx-auto"
-      max-width="500"
+  <v-card class="overflow-hidden">
+    <v-app-bar
+      absolute
+      color="#6A76AB"
+      dark
+      shrink-on-scroll
+      prominent
+      src="https://picsum.photos/1920/1080?random"
+      fade-img-on-scroll
+      scroll-target="#scrolling-techniques-4"
     >
-      <v-toolbar
-        color="primary"
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+        ></v-img>
+      </template>
+
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Title</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+
+      <v-menu
+        bottom
+        left
       >
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-  
-        <v-toolbar-title>New Chat</v-toolbar-title>
-  
-        <v-spacer></v-spacer>
-  
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-      </v-toolbar>
-  
-      <v-list subheader>
-        <v-subheader>Recent chat</v-subheader>
-  
-        <v-list-item
-          v-for="chat in recent"
-          :key="chat.title"
-        >
-          <v-list-item-avatar>
-            <v-img
-              :alt="`${chat.title} avatar`"
-              :src="chat.avatar"
-            ></v-img>
-          </v-list-item-avatar>
-  
-          <v-list-item-content>
-            <v-list-item-title v-text="chat.title"></v-list-item-title>
-          </v-list-item-content>
-  
-          <v-list-item-icon>
-            <v-icon :color="chat.active ? 'deep-purple accent-4' : 'grey'">
-              mdi-message-outline
-            </v-icon>
-          </v-list-item-icon>
-        </v-list-item>
-      </v-list>
-  
-      <v-divider></v-divider>
-  
-      <v-list subheader>
-        <v-subheader>Previous chats</v-subheader>
-  
-        <v-list-item
-          v-for="chat in previous"
-          :key="chat.title"
-        >
-          <v-list-item-avatar>
-            <v-img
-              :alt="`${chat.title} avatar`"
-              :src="chat.avatar"
-            ></v-img>
-          </v-list-item-avatar>
-  
-          <v-list-item-content>
-            <v-list-item-title v-text="chat.title"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-card>
-  </template>
-  <script>
-  export default {
-    data: () => ({
-      recent: [
-        {
-          active: true,
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-          title: 'Jason Oner',
-        },
-        {
-          active: true,
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-          title: 'Mike Carlson',
-        },
-        {
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-          title: 'Cindy Baker',
-        },
-        {
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-          title: 'Ali Connors',
-        },
-      ],
-      previous: [{
-        title: 'Travis Howard',
-        avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-      }],
-    }),
-  }
-</script>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            color="yellow"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item>
+            <v-list-item-title>Click Me 1</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Click Me 2</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Click Me 3</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Click Me 4</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <template v-slot:extension>
+        <v-tabs align-with-title>
+          <v-tab>Tab 1</v-tab>
+
+          <v-tab>Tab 2</v-tab>
+
+          <v-tab>Tab 3</v-tab>
+        </v-tabs>
+      </template>
+    </v-app-bar>
+    <v-sheet
+      id="scrolling-techniques-4"
+      class="overflow-y-auto"
+      max-height="600"
+    >
+      <v-container style="height: 1000px;"></v-container>
+    </v-sheet>
+  </v-card>
+</template>
